@@ -146,7 +146,7 @@ export default function Navbar() {
             <img
               alt="logo"
               src={Logo2}
-              style={{ height: "45px", width: "auto", objectFit: "contain" }}
+              style={{ height: "100px", width: "auto", objectFit: "contain" }}
             />
           </a>
 
