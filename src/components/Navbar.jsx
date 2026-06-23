@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import { FiMenu } from "react-icons/fi";
 import Logo2 from "../assets/Logo2.png";
+import OverlayMenu from "./OverlayMenu";
 
 const navLinks = [
   { label: "About",      href: "#about" },
@@ -14,6 +16,8 @@ export default function Navbar() {
   const [hoveredLink,  setHoveredLink]  = useState(null);
   const [isVisible,    setIsVisible]    = useState(true);
   const [lastScrollY,  setLastScrollY]  = useState(0);
+  const [isMobile,     setIsMobile]     = useState(false);
+  const [menuOpen,     setMenuOpen]     = useState(false);
 
   /* Scroll direction detection + frosted-glass effect */
   useEffect(() => {
@@ -32,6 +36,13 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, [lastScrollY]);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   /* Highlight active section on scroll via IntersectionObserver */
   useEffect(() => {
@@ -150,45 +161,71 @@ export default function Navbar() {
             />
           </a>
 
-          {/* ── CENTER: Nav links ── */}
-          <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-            {navLinks.map(({ label, href }) => {
-              const id       = href.replace("#", "");
-              const isActive = active === id;
-              const isHover  = hoveredLink === label;
-              return (
-                <a
-                  key={label}
-                  href={href}
-                  onClick={() => setActive(id)}
-                  onMouseEnter={() => setHoveredLink(label)}
-                  onMouseLeave={() => setHoveredLink(null)}
-                  className={`nl${isActive ? " nl-active" : ""}${isHover && !isActive ? " nl-hover" : ""}`}
-                  style={{
-                    position:       "relative",
-                    textDecoration: "none",
-                    color:          isActive ? "#2dd4bf" : isHover ? "#e2e8f0" : "#94a3b8",
-                    fontSize:       "0.9rem",
-                    fontWeight:     isActive ? "600" : "500",
-                    padding:        "6px 16px",
-                    borderRadius:   "8px",
-                    letterSpacing:  "0.025em",
-                    transition:     "color 0.22s, background 0.22s",
-                    background:     isActive
-                      ? "rgba(45,212,191,0.07)"
-                      : isHover ? "rgba(255,255,255,0.04)" : "transparent",
-                  }}
-                >
-                  {label}
-                </a>
-              );
-            })}
-          </div>
+          {/* ── CENTER: Nav links / mobile menu button ── */}
+          {isMobile ? (
+            <button
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              style={{
+                display:       "flex",
+                alignItems:    "center",
+                justifyContent:"center",
+                border:        "1px solid rgba(255,255,255,0.15)",
+                borderRadius:  "999px",
+                padding:       "10px 14px",
+                color:         "#e2e8f0",
+                background:    "rgba(255,255,255,0.06)",
+                cursor:        "pointer",
+                transition:    "background 0.22s, transform 0.22s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.12)")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.06)")}
+            >
+              <FiMenu size={24} />
+            </button>
+          ) : (
+            <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+              {navLinks.map(({ label, href }) => {
+                const id       = href.replace("#", "");
+                const isActive = active === id;
+                const isHover  = hoveredLink === label;
+                return (
+                  <a
+                    key={label}
+                    href={href}
+                    onClick={() => setActive(id)}
+                    onMouseEnter={() => setHoveredLink(label)}
+                    onMouseLeave={() => setHoveredLink(null)}
+                    className={`nl${isActive ? " nl-active" : ""}${isHover && !isActive ? " nl-hover" : ""}`}
+                    style={{
+                      position:       "relative",
+                      textDecoration: "none",
+                      color:          isActive ? "#2dd4bf" : isHover ? "#e2e8f0" : "#94a3b8",
+                      fontSize:       "0.9rem",
+                      fontWeight:     isActive ? "600" : "500",
+                      padding:        "6px 16px",
+                      borderRadius:   "8px",
+                      letterSpacing:  "0.025em",
+                      transition:     "color 0.22s, background 0.22s",
+                      background:     isActive
+                        ? "rgba(45,212,191,0.07)"
+                        : isHover ? "rgba(255,255,255,0.04)" : "transparent",
+                    }}
+                  >
+                    {label}
+                  </a>
+                );
+              })}
+            </div>
+          )}
 
           {/* ── RIGHT: Contact button ── */}
-          <a href="#contact" className="contact-btn">
-            Contact
-          </a>
+          {!isMobile && (
+            <a href="#contact" className="contact-btn">
+              Contact
+            </a>
+          )}
+          <OverlayMenu isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
 
         </div>
       </nav>

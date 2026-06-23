@@ -1,6 +1,7 @@
 import {motion} from "framer-motion";
 import React from "react";
 import p from "../assets/portfolio_photo.jpeg"
+import g from "../assets/girl.jpeg"
 export default function About(){
   const glows=[
     "-top-10 -left-10 w-[360px] h-[360px] opacity-20 blur-[120px]",
@@ -39,7 +40,7 @@ export default function About(){
             whileHover={{scale:1.02}}
             transition={{type:"spring",stiffness:200, damping:18}}
             >
-              <img src={p} alt="profile"
+              <img src={g} alt="profile"
               className="absolute inset-0"/>
             </motion.div>
             <div 

@@ -52,8 +52,8 @@ export default function Home(){
     id="home" className="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-6 pt-16">
       <ParticlesBackground />
       <div className="relative z-10 h-full w-full max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 ">
-        <div className="flex flex-col justify-center h-full text-center lg:text-left relative">
-           <div className=" w-full lg:pr-24 mx-auto max-w-[48rem]">
+        <div className="flex flex-col justify-center h-full text-left relative">
+           <div className="w-full lg:pr-24 max-w-[48rem]">
             <motion.div
             className=" mb-3 text-xl sm:text-2xl md:text-2xl lg:text-3xl font-semibold text-white tracking-wide min-h-[1.6em]"
             initial={{ opacity: 0, y: 12}}
@@ -81,7 +81,7 @@ export default function Home(){
                   Dolly</span>
                </motion.h1>
                <motion.p 
-               className="mt-6 text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 "
+               className="mt-6 text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-0"
                initial={{opacity:0,y:20}}
                animate={{opacity:1 , y:0}}
                transition={{delay:0.4, duration:0.8}}
@@ -89,7 +89,7 @@ export default function Home(){
                 Driven by curiosity and a passion for AI, I specialize in Machine Learning and Data Science, 
                 building intelligent, data-driven solutions that transform complex problems into actionable insights.
                </motion.p>
-              <motion.div className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-6"
+              <motion.div className="mt-10 flex flex-wrap items-center justify-start gap-6"
               initial={{opacity:0}}
               animate={{opacity:1}}
               transition={{delay:0.8, duration:0.8}}
@@ -104,7 +104,7 @@ export default function Home(){
                 hover:bg-gray-200 shadow-lg hover:scale transition-all" 
                 >My Resume</a>
               </motion.div>
-              <div className="mt-10 flex gap-5 text-2xl md:text-3xl justify-center lg:justify-start">
+              <div className="mt-10 flex gap-5 text-2xl md:text-3xl justify-start">
                 {socials.map(({Icon,label,href})=>(
                   <motion.a href={href} key={label} target="_blank" aria-label={label} rel="noopener noreferrer"
                   variants={glowVariants}

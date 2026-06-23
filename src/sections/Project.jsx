@@ -1,9 +1,11 @@
+import { useState } from "react";
 import { ArrowUpRight, GitBranch } from "lucide-react";
 import movieImage from "../assets/movie-ss.png";
 import booksImage from "../assets/books-ss.png";
 import dashboard from "../assets/dashboard.png";
 
 const projects = [
+  
   {
     title: "Movie Reccomendation System",
     description:
@@ -31,15 +33,23 @@ const projects = [
     link: "#",
     github: "#",
   },
+  
 ];
 
-const AnimatedBorderButton = ({ children }) => (
-  <button className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-3 text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:border-primary/60 hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/40">
+const AnimatedBorderButton = ({ children, onClick }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-3 text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:border-primary/60 hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/40"
+  >
     {children}
   </button>
 );
 
 export default function Project(){
+  const [showAll, setShowAll] = useState(false);
+  const visibleProjects = showAll ? projects : projects.slice(0, 3);
+
   return (
     <section id="projects" className="py-32 relative overflow-hidden">
       {/* Bg glows */}
@@ -66,7 +76,7 @@ export default function Project(){
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
-          {projects.map((project, idx) => (
+          {visibleProjects.map((project, idx) => (
             <div
               key={idx}
               className="group glass rounded-2xl overflow-hidden animate-fade-in md:row-span-1 neon-border-card"
@@ -136,8 +146,8 @@ export default function Project(){
 
         {/* View All CTA */}
         <div className="text-center mt-12 animate-fade-in animation-delay-500">
-          <AnimatedBorderButton>
-            View All Projects
+          <AnimatedBorderButton onClick={() => setShowAll((prev) => !prev)}>
+            {showAll ? "Show Less Projects" : "Show More Projects"}
             <ArrowUpRight className="w-5 h-5" />
           </AnimatedBorderButton>
         </div>
