@@ -186,3 +186,42 @@ h2{ font-size: clamp(1.25rem, 2.6vw, 1.75rem); }
   .card-hover-glow{ transition: transform .22s, box-shadow .22s; }
   .card-hover-glow:hover{ transform: translateY(-6px); box-shadow: 0 30px 70px rgba(0,191,143,0.06); }
 }
+.neon-border-card {
+  position: relative;
+  border: 1px solid rgba(0,255,231,0.25);
+  box-shadow: 0 0 12px rgba(0,255,231,0.08);
+  overflow: hidden;
+  transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+}
+
+.neon-border-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0,255,231,0.6);
+  box-shadow: 0 0 36px rgba(0,255,231,0.22), 0 0 80px rgba(0,191,143,0.14);
+}
+
+.neon-border-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(0,255,231,0.14), rgba(0,191,143,0.16), rgba(28,216,210,0.1), rgba(48,43,99,0.12));
+  opacity: 0.9;
+}
+
+.neon-border-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -30%;
+  width: 160%;
+  height: 4px;
+  background: linear-gradient(90deg, #00ffe7, #00bf8f, #1cd8d2, #302b63, #00ffe7);
+  animation: neon-shift 3.3s linear infinite;
+}
+
+@keyframes neon-shift {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-25%); }
+  100% { transform: translateX(0); }
+}

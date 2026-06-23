@@ -18,6 +18,7 @@ const experiences = [
     current: false,
   },
   
+  
 ];
 
 export default function Experience(){
@@ -28,7 +29,7 @@ export default function Experience(){
        h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2"
       />
 
-      <div className="container mx-auto px-6 relative z-10  text-center">
+      <div className="container mx-auto px-6 relative z-10  ">
         {/* Section Header */}
         <div className="max-w-3xl mb-16 mx-auto text-center">
           <span
