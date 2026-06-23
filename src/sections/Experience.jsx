@@ -1,3 +1,5 @@
+import { useState, useEffect, useRef } from "react";
+
 const experiences = [
   {
     period: "June-July 2026",
@@ -17,13 +19,42 @@ const experiences = [
     technologies: ["Streamlit", "Numpy", "Pandas", "Matplotlib"],
     current: false,
   },
-  
-  
 ];
 
 export default function Experience(){
+  const [inView, setInView] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="experience" className="py-32 relative overflow-hidden">
+    <section id="experience" ref={sectionRef} className="py-32 relative overflow-hidden">
+      <style>{`
+        @keyframes shimmer {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+        @keyframes fadeSlideUp {
+          from { opacity: 0; transform: translateY(24px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .experience-shimmer {
+          background: linear-gradient(90deg, #e2e8f0 20%, #2dd4bf 60%, #818cf8 100%);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: shimmer 4s linear infinite;
+        }
+      `}</style>
       <div
         className="absolute top-1/2 left-1/4 w-96
        h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2"
@@ -33,12 +64,14 @@ export default function Experience(){
         {/* Section Header */}
         <div className="max-w-3xl mb-16 mx-auto text-center">
           <span
-            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 inline-block"
+            className={`text-4xl md:text-5xl font-bold mb-4 inline-block ${inView ? "experience-shimmer" : ""}`}
+            style={{ animation: inView ? "fadeSlideUp 0.7s ease both" : "none" }}
           >
             Career Journey
           </span>
           <h2
-            className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-secondary-foreground"
+            className="text-4xl md:text-5xl font-bold mt-4 mb-6 text-secondary-foreground"
+            style={{ animation: inView ? "fadeSlideUp 0.8s ease both" : "none" }}
           >
             Experience that
             <span className="font-serif italic font-normal text-white">
@@ -47,8 +80,8 @@ export default function Experience(){
           </h2>
 
           <p
-            className="text-muted-foreground
-           animate-fade-in animation-delay-200"
+            className="text-muted-foreground"
+            style={{ animation: inView ? "fadeSlideUp 0.9s ease both" : "none" }}
           >
             A timeline of my professional growth, from curious beginner to
             senior engineer leading teams and building products at scale.

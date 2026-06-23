@@ -112,13 +112,7 @@ useEffect(()=>{
         <div className="absolute bottom-1/4 right-0 w-[300px] h-[300px] rounded-full bg-gradient-to-r from-[#302b63] via-[#00bf8f] to-[#1cd8d2]
         opacity-20 blur-[120px] animate-pulse delay-500" />
       </div>
-      <motion.h2 className="text-4xl mt-5 sm:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1cd8d2] via-[#00bf8f] to-[#302b63] z-10"
-      initial={{opacity:0 , y:-30}}
-      whileInView={{opacity:1, y:0}}
-      transition={{duration:0.5, delay:0.1}}
-    >
-        My Skills
-      </motion.h2>
+      
       <motion.p className="mt-2 mb-8 text-white/90 text-base sm:text-lg z-10"
       initial={{opacity:0, y:-10}}
       whileInView={{opacity:1,y:0}}

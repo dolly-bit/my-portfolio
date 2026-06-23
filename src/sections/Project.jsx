@@ -1,7 +1,7 @@
 import { ArrowUpRight, GitBranch } from "lucide-react";
 import movieImage from "../assets/movie-ss.png";
 import booksImage from "../assets/books-ss.png";
-import astraImage from "../assets/Astra.png";
+import dashboard from "../assets/dashboard.png";
 
 const projects = [
   {
@@ -26,7 +26,7 @@ const projects = [
     title: "Interactive Dashboard",
     description:
       "Interactive dashboard showing expected versus application data in tables and graphs.",
-    image: astraImage,
+    image: dashboard,
     tags: ["Streamlit","Pandas","NumPy", "Matplotlib"],
     link: "#",
     github: "#",
@@ -65,7 +65,7 @@ export default function Project(){
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
           {projects.map((project, idx) => (
             <div
               key={idx}

@@ -239,7 +239,7 @@ export default function Skills2() {
           .skills-grid { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 1024px) and (min-width: 769px) {
-          .skills-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .skills-grid { grid-template-columns: repeat(3, 1fr) !important; }
         }
       `}</style>
 
@@ -247,7 +247,7 @@ export default function Skills2() {
         ref={sectionRef}
         style={{
           minHeight: "100vh",
-          background: "linear-gradient(160deg, #050a18 0%, #090f22 40%, #07101e 100%)",
+          
           padding: "100px 20px",
           position: "relative",
           overflow: "hidden",
