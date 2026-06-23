@@ -64,7 +64,7 @@ export default function About(){
               <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
                 <a href="#projects" className="inline-flex items-center justify-center rounded-lg bg-white text-black 
                 font-semibold px-5 py-3 hover:bg-gray-200 transition">View Projects</a>
-                <a href="#Contact" className="inline-flex items-center justify-center rounded-lg
+                <a href="#contact" className="inline-flex items-center justify-center rounded-lg
                 border border-white/20 text-white bg-white/10 px-5 py-3 hover:bg-white/20 transition">Get in Touch</a>
               </div>
             </div>
