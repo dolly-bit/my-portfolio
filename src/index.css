@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+body{
+  font-family:'Poppins', sans-serif;
+  background: #020408;
+  color: #c8e6f5;
+  overflow-x: hidden;
+
+}
+h1, h2{
+  font-family:'Roboto', sans-serif;
+}
+
+.app-shell {
+  min-height: 100vh;
+  background: #020408;
+  position: relative;
+}
+
+:root{
+  --bg:#020408;
+  --muted:#9fdff3;
+  --accent-1:#00ffe7;
+  --accent-2:#00bf8f;
+  --card-radius:1rem;
+  --card-padding: clamp(12px, 1.4vw, 20px);
+}
+
+html{ font-size: clamp(14px, 1.2vw, 16px); }
+
+h1{ font-size: clamp(1.6rem, 3.6vw, 2.4rem); }
+h2{ font-size: clamp(1.25rem, 2.6vw, 1.75rem); }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+/* Responsive card sizing helpers */
+.card-min{ min-height: 260px; }
+@media (min-width: 768px){ .card-min{ min-height: 320px; } }
+@media (min-width: 1024px){ .card-min{ min-height: 360px; } }
+
+/* Responsive project image sizing */
+.project-image{ height: clamp(180px, 28vh, 420px); width:100%; object-fit:cover; }
+.project-modal-image{ height: clamp(160px, 30vh, 360px); width:100%; object-fit:cover; }
+
+.neural-background {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.scanline-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.06) 2px,
+    rgba(0, 0, 0, 0.06) 4px
+  );
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: #00ffe7;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px #00ffe7;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(0, 255, 231, 0.5);
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+}
+
+@media (pointer: fine) {
+  body,
+  button,
+  a {
+    cursor: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+}
+.cursor-dot {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: #00ffe7;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 15px #00ffe7;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(0, 255, 231, 0.5);
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+}
+
+@media (pointer: fine) {
+  body,
+  button,
+  a {
+    cursor: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+}
+
+
+@layer utilities{
+  .gradient{
+    background:linear-gradient(-45deg, #302b63,#00bf8f, #1cd8d2);
+  }
+  .neon-btn{
+    background: linear-gradient(90deg,#00ffe7,#00bf8f);
+    color:#021018;
+    padding:0.6rem 1rem;
+    border-radius:0.6rem;
+    box-shadow:0 10px 30px rgba(0,255,231,0.06);
+    transition:transform .18s ease, box-shadow .18s ease, opacity .18s;
+  }
+  .neon-btn:hover{ transform:translateY(-4px); box-shadow:0 20px 48px rgba(0,191,143,0.12); }
+
+  .neon-outline{
+    background:transparent;
+    color:#c8e6f5;
+    border:1px solid rgba(0,255,231,0.12);
+    padding:0.55rem 0.95rem;
+    border-radius:0.6rem;
+    transition:box-shadow .18s, transform .18s;
+  }
+  .neon-outline:hover{ box-shadow:0 12px 36px rgba(0,255,231,0.06); transform:translateY(-3px); }
+
+  .neon-tag{
+    background: rgba(0,255,231,0.03);
+    border: 1px solid rgba(0,255,231,0.04);
+    color: #9feff3;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    font-weight:600;
+    font-size:0.7rem;
+  }
+
+  @keyframes neonPulse{
+    0%{ box-shadow: 0 0 0 rgba(0,255,231,0.04); }
+    50%{ box-shadow: 0 0 40px rgba(0,191,143,0.08); }
+    100%{ box-shadow: 0 0 0 rgba(0,255,231,0.04); }
+  }
+
+  .neon-pulse{ animation: neonPulse 2.4s ease-in-out infinite; }
+
+  .card-hover-glow{ transition: transform .22s, box-shadow .22s; }
+  .card-hover-glow:hover{ transform: translateY(-6px); box-shadow: 0 30px 70px rgba(0,191,143,0.06); }
+}
