@@ -32,7 +32,7 @@ export default function OverlayMenu({ isOpen, onClose }) {
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="flex items-center justify-between gap-4 px-5 py-4">
-              <span className="text-base font-semibold text-white">Menu</span>
+              
               <button
                 type="button"
                 onClick={onClose}
