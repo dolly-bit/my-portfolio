@@ -23,3 +23,26 @@ dist-ssr
 *.sln
 *.sw?
 .env
+Thumbs.db
+desktop.ini
+
+# Local env files
+.env.local
+.env.*.local
+
+# Vite and tool caches
+.vite
+.cache
+.parcel-cache
+
+# Build outputs
+build
+out
+
+# Coverage reports
+coverage
+.nyc_output
+
+# Misc
+.history
+*.pem

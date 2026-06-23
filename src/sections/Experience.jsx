@@ -23,7 +23,9 @@ const experiences = [
 
 export default function Experience(){
   const [inView, setInView] = useState(false);
+  const [visibleItems, setVisibleItems] = useState(() => new Array(experiences.length).fill(false));
   const sectionRef = useRef(null);
+  const itemRefs = useRef([]);
 
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -33,6 +35,29 @@ export default function Experience(){
     );
     observer.observe(sectionRef.current);
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!itemRefs.current) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const idx = Number(entry.target.getAttribute("data-idx"));
+          if (entry.isIntersecting) {
+            setVisibleItems((prev) => {
+              if (prev[idx]) return prev;
+              const copy = [...prev];
+              copy[idx] = true;
+              return copy;
+            });
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+
+    itemRefs.current.forEach((el) => el && obs.observe(el));
+    return () => obs.disconnect();
   }, []);
 
   return (
@@ -54,6 +79,8 @@ export default function Experience(){
           background-clip: text;
           animation: shimmer 4s linear infinite;
         }
+        .reveal { opacity: 0; transform: translateY(24px); transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 600ms cubic-bezier(.2,.9,.2,1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
       `}</style>
       <div
         className="absolute top-1/2 left-1/4 w-96
@@ -97,8 +124,11 @@ export default function Experience(){
             {experiences.map((exp, idx) => (
               <div
                 key={idx}
-                className="relative grid md:grid-cols-2 gap-8 animate-fade-in"
-                style={{ animationDelay: `${(idx + 1) * 150}ms` }}
+                data-idx={idx}
+                ref={(el) => (itemRefs.current[idx] = el)}
+                className={`relative grid md:grid-cols-2 gap-8 reveal ${
+                  visibleItems[idx] ? "visible" : ""
+                }`}
               >
                 {/* Timeline Dot */}
                 <div className="absolute left-0 md:left-1/2 top-0 w-4 h-4 rounded-full bg-white -translate-x-1/2 ring-4 ring-primary/25 z-10 shadow-[0_0_18px_rgba(255,255,255,0.18)]">
