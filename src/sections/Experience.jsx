@@ -1,184 +1,118 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useMemo, useRef, useState } from "react";
-
-
-
-
-const experiences=[
-   {
-    role:"Application Service Intern",
-    company:"Waisl Limited",
-    duration:"July 2025",
-    description:"Built an interactive dashboard for their app"
+const experiences = [
+  {
+    period: "June-July 2026",
+    role: "Software Developer Intern",
+    company: "Airport Authority of India",
+    description:
+      "Delivered custom web solutions for small businesses and startups. Built 15+ websites and applications, handling everything from design to deployment.",
+    technologies: ["React", "PHP", "WordPress", "MySQL"],
+    current: true,
   },
   {
-    role:"Software Developer Intern",
-    company:"Airport Authority of India",
-    duration:"June-July 2026",
-    description:"Web application"
+    period: "July 2025",
+    role: "Application Service Intern",
+    company: "Waisl Digital",
+    description:
+      "Built an interactive dashboard which shows all the detail about their application in table form as well as graph form, summarizing every key metric.",
+    technologies: ["Streamlit", "Numpy", "Pandas", "Matplotlib"],
+    current: false,
   },
-  {
-    role:"Application Service Intern",
-    company:"Waisl Limited",
-    duration:"July 2025",
-    description:"Built an interactive dashboard for their app"
-  }
+  
 ];
 
-function ExperienceItem({exp, idx, start, end, scrollYProgress, layout}){
-  const scale= useTransform (scrollYProgress, [start, end],[0,1])
-  const opacity= useTransform (scrollYProgress, [start, end],[0,1])
-  const y= useTransform(scrollYProgress, [start, end], [idx%2===0 ? 30 : -30 , 0])
-  const x= useTransform(scrollYProgress, [start, end], [-24, 0])
-
-  if (layout=== "desktop"){
-    return(
-      <div className="relative flex flex-1 justify-center items-center min-w-0">
-        <motion.div className=" z-10 w-7 rounded-full bg-white shadow-[0_0_08px_rgba(255,255,255,0.1)]"
-        style={{scale, opacity}}>
-
-        </motion.div>
-        <motion.div className={` absolute ${idx%2=== 0 ? "-top-8": "-bottom-8"} w-0.75 bg-white/40`}
-        style= {{height:40, opacity}}
-        >
-
-        </motion.div>
-        <motion.article className={` absolute ${idx%2===0 ? "bottom-12": "top-12"} bg-gray-900/80 backdrop-blur  border border-gray-700/70
-        rounded-xl p-7 w-[320px] shadow-lg`}
-        style={{opacity, y, maxWidth:"90vw"}} 
-        transition={{duration:0.4, delay: idx*0.15}}
-        >
-          <h3 className="text-xl font-semibold">
-            {exp.role}
-          </h3>
-          <p className="text-md text-gray-400 mb-3 ">
-            {exp.company}| {exp.duration}
-          </p>
-          <p className="text-md text-gray-300 break-word">
-            {exp.description}
-          </p>
-
-        </motion.article>
-
-      </div>
-    )
-  }
-  return(
-    <div className="relative flex items-start">
-      <motion.div className="absolute -left-3.5 top-3 z-10 w-7 h-7 rounded-full bg-white shadow-[0_0_08px_rgba(255,255,255,0.1)]"
-      style={{scale, opacity}}
-      >
-
-      </motion.div>
-      <motion.article className=" bg-gray-900/80 backdrop-blur border border-gray-700/70 rounded-xl p-5 w-[90vw] max-w-sm ml-6 shadow-lg"
-      style={{opacity,x}}
-      transition={{duration:0.4, delay:idx*0.15}}>
-        <h3 className="text-lg font-semibold wrap-break-word">
-            {exp.role}
-          </h3>
-          <p className="text-sm text-gray-400 mb-2 wrap-break-word ">
-            {exp.company}| {exp.duration}
-          </p>
-          <p className="text-sm text-gray-300 wrap-break-word">
-            {exp.description}
-          </p>
-
-      </motion.article>
-
-    </div>
-  )
-}
-
 export default function Experience(){
+  return (
+    <section id="experience" className="py-32 relative overflow-hidden">
+      <div
+        className="absolute top-1/2 left-1/4 w-96
+       h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2"
+      />
 
-  const sceneRef= useRef(null);
-  const [isMobile, setIsMobile]= useState(false);
-  useEffect(()=>{
-    const checkMobile =()=> setIsMobile(window.innerWidth <768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile)
-    return ()=> window.removeEventListener("resize", checkMobile)
-
-  },[])
-
-  const SCENE_HEIGHT_VH= isMobile ? 160*experiences.length : 120*experiences.length;
-  const{scrollYProgress}= useScroll({
-    target:sceneRef, 
-    offset: ["start start","end end"]
-  })
-
-  const thresholds= useMemo(()=> experiences.map((_,i)=>(i+1)/experiences.length),[])
-  const lineSize =useTransform(scrollYProgress, (v)=> `${v*100}%`)
-
-  return(
-    <section id="experience"
-    className="relative  text-white"
-    >
-      <div ref={sceneRef}
-      style={{height:`${SCENE_HEIGHT_VH}vh`, minHeight:"120vh"}}
-      className="relative">
-        <div className="sticky top-0 h-screen flex flex-col">
-          <h2 className="text-4xl sm:text-5xl font-semibold mt-5 text-center">
-            Experience
+      <div className="container mx-auto px-6 relative z-10  text-center">
+        {/* Section Header */}
+        <div className="max-w-3xl mb-16 mx-auto text-center">
+          <span
+            className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 inline-block"
+          >
+            Career Journey
+          </span>
+          <h2
+            className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-secondary-foreground"
+          >
+            Experience that
+            <span className="font-serif italic font-normal text-white">
+              speaks volumes.
+            </span>
           </h2>
-          <div className="flex flex-1 items-center justify-center px-6 pb-10">
-            {!isMobile && (
-              <div className="relative w-full max-w-7xl">
-                <div className="relative h-1.5 bg-white/15 rounded ">
-                <motion.div className="absolute left-0 top-0 h-1.5 bg-white rounded origin-left"
-                style={{width:lineSize}}>
 
-                </motion.div>
-                </div>
-                <div className="relative flex justify-between mt-0">
-                  {experiences.map((exp,idx)=>(
-                    <ExperienceItem 
-                      key={idx}
-                      exp={exp}
-                      idx={idx}
-                      start={idx===0 ? 0:thresholds[idx-1]}
-                      end={thresholds[idx]}
-                      scrollYProgress={scrollYProgress}
-                      layout="desktop"
-                    />
-                  ))}
-                </div>
-
-              </div>
-            )}
-            {isMobile && (
-              <div className="relative w-full max-w-md">
-                <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-white/15 rounded">
-                <motion.div className="absolute top-0 left-0 w-1.5 rounded origin-top"
-                style={{height:lineSize}}>
-
-                </motion.div>
-                </div>
-                <div className="relative flex flex-col gap-10 ml-10 mt-6 pb-28">
-                  {experiences.map((exp,idx)=>(
-                      <ExperienceItem 
-                    key={idx}
-                    exp={exp}
-                    idx={idx}
-                    start={idx===0 ? 0:thresholds[idx-1]}
-                    end ={thresholds[idx]}
-                    scrollYProgress={scrollYProgress}
-                    layout="mobile"
-                    />
-                  )
-                 ) }
-
-                </div>
-
-              </div>
-            )}
-
-          </div>
-
+          <p
+            className="text-muted-foreground
+           animate-fade-in animation-delay-200"
+          >
+            A timeline of my professional growth, from curious beginner to
+            senior engineer leading teams and building products at scale.
+          </p>
         </div>
 
-      </div>
+        {/* Timeline */}
+        <div className="relative">
+          <div className="timeline-glow absolute left-0 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#1cd8d2] via-[#00bf8f] to-[#302b63] md:-translate-x-1/2 shadow-[0_0_25px_rgba(32,178,166,0.8)]" />
 
+          {/* Experience Items */}
+          <div className="space-y-12">
+            {experiences.map((exp, idx) => (
+              <div
+                key={idx}
+                className="relative grid md:grid-cols-2 gap-8 animate-fade-in"
+                style={{ animationDelay: `${(idx + 1) * 150}ms` }}
+              >
+                {/* Timeline Dot */}
+                <div className="absolute left-0 md:left-1/2 top-0 w-4 h-4 rounded-full bg-white -translate-x-1/2 ring-4 ring-primary/25 z-10 shadow-[0_0_18px_rgba(255,255,255,0.18)]">
+                  {exp.current && (
+                    <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
+                  )}
+                </div>
+
+                {/* Content */}
+                <div
+                  className={`pl-8 md:pl-0 ${
+                    idx % 2 === 0
+                      ? "md:pr-16 md:text-right"
+                      : "md:col-start-2 md:pl-16"
+                  }`}
+                >
+                  <div
+                    className={`glass p-6 rounded-2xl border border-primary/30 hover:border-primary/50 transition-all duration-500`}
+                  >
+                    <span className="text-sm text-primary font-medium">
+                      {exp.period}
+                    </span>
+                    <h3 className="text-xl font-semibold mt-2">{exp.role}</h3>
+                    <p className="text-muted-foreground">{exp.company}</p>
+                    <p className="text-sm text-muted-foreground mt-4">
+                      {exp.description}
+                    </p>
+                    <div
+                      className={`flex flex-wrap gap-2 mt-4 ${
+                        idx % 2 === 0 ? "md:justify-end" : ""
+                      }`}
+                    >
+                      {exp.technologies.map((tech, techIdx) => (
+                        <span
+                          key={techIdx}
+                          className="px-3 py-1 bg-surface text-xs rounded-full text-muted-foreground"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
-  )
-}
+  );
+};
