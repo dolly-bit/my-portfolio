@@ -8,6 +8,7 @@ import Home from "./sections/Home";
 import Project from "./sections/Project";
 import Skills from "./sections/Skills";
 import Skills2 from "./sections/Skills2";
+import Certifications from "./sections/Certificate"
 
 import React from "react";
 import IntroAnimation from "./components/IntroAnimation";
@@ -33,6 +34,7 @@ export default function App(){
         <Skills />
         <Skills2/>
         <Project />
+        {/* <Certifications/> */}
         
         <Experience />
         

@@ -1,7 +1,8 @@
 import {motion} from "framer-motion";
 import React from "react";
-import p from "../assets/portfolio_photo.jpeg"
 import g from "../assets/girl.jpeg"
+import p from "../assets/my_image.jpeg"
+
 export default function About(){
   const glows=[
     "-top-10 -left-10 w-[360px] h-[360px] opacity-20 blur-[120px]",

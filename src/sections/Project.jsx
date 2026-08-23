@@ -1,19 +1,29 @@
 import { useState } from "react";
 import { ArrowUpRight, GitBranch } from "lucide-react";
-import movieImage from "../assets/movie-ss.png";
+import movieImage from "../assets/Deepcine.png";
 import booksImage from "../assets/books-ss.png";
 import dashboard from "../assets/dashboard.png";
+import farelens from "../assets/farelens.png";
 
 const projects = [
   
   {
-    title: "Movie Reccomendation System",
+    title: "FareLens – AI Powered Flight Price Prediction & Analytics",
+    description:
+      "FareLens is a web application that predicts flight prices based on historical data and provides insights to users. The system provides user with the best time to buy/sell tickets and as well as best prices for flights",
+    image: farelens,
+    tags: ["Python","XGBoost", "Scikit-learn", "FastAPI", "React", "Docker"],
+    link: "https://farelens.vercel.app/",
+    github: "https://github.com/sumitDev11/FareLens",
+  },
+  {
+    title: "DeepCine- Personalized Movie Recommendation System",
     description:
       "An intelligent system that suggests movies to users based on their preferences and related titles.",
     image: movieImage,
-    tags: ["Python","Streamlit","Cosine Similarity","Pandas","HuggingFace"],
-    link: "#",
-    github: "https://github.com/dolly-bit/movie-rec",
+    tags: ["Python","Sentence Transformer","FAISS","FastAPI","TMDP API",""],
+    link: "https://deepcine-v2.vercel.app/",
+    github: "https://github.com/dolly-bit/DeepCineV2",
   },
   {
     title: "Book Recommendation System",

@@ -3,11 +3,11 @@ import { useState, useEffect, useRef } from "react";
 const experiences = [
   {
     period: "June-July 2026",
-    role: "Software Developer Intern",
+    role: "Machine Learning Intern",
     company: "Airport Authority of India",
     description:
-      "Delivered custom web solutions for small businesses and startups. Built 15+ websites and applications, handling everything from design to deployment.",
-    technologies: ["React", "PHP", "WordPress", "MySQL"],
+      "Aerodrome– AI Powered Flight Price Prediction & Analytics is a web application that predicts flight prices based on historical data and provides insights to users. The system provides user with the best time to buy/sell tickets and as well as best prices for flights",
+    technologies: ["Python","scikit-learn", "FastAPI", "XGBoost","React","Docker"],
     current: true,
   },
   {
