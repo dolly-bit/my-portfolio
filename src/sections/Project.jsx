@@ -29,7 +29,7 @@ const projects = [
   {
     title: "Mental Health Predictor",
     description:
-      "An intelligent system that predicts the menta health of the user based on the answers they provide.",
+      "An intelligent system that predicts the mental health of the user based on the answers they provide.",
     image: mentalhealth,
     tags: ["Python","Coulumn Transformer","scikit-learn","FastAPI","HTML","CSS"],
     link: "https://mental-health-predictor-1-7j18.onrender.com",
