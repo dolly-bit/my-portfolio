@@ -4,6 +4,7 @@ import movieImage from "../assets/Deepcine.png";
 import booksImage from "../assets/books-ss.png";
 import dashboard from "../assets/dashboard.png";
 import farelens from "../assets/farelens.png";
+import mentalhealth from "../assets/mental_health.png";
 
 const projects = [
   
@@ -21,9 +22,18 @@ const projects = [
     description:
       "An intelligent system that suggests movies to users based on their preferences and related titles.",
     image: movieImage,
-    tags: ["Python","Sentence Transformer","FAISS","FastAPI","TMDP API",""],
+    tags: ["Python","Sentence Transformer","FAISS","FastAPI","TMDP API","React","HTML","CSS"],
     link: "https://deepcine-v2.vercel.app/",
     github: "https://github.com/dolly-bit/DeepCineV2",
+  },
+  {
+    title: "Mental Health Predictor",
+    description:
+      "An intelligent system that predicts the menta health of the user based on the answers they provide.",
+    image: mentalhealth,
+    tags: ["Python","Coulumn Transformer","scikit-learn","FastAPI","HTML","CSS"],
+    link: "https://mental-health-predictor-1-7j18.onrender.com",
+    github: "https://github.com/dolly-bit/Mental_Health_Predictor.git",
   },
   {
     title: "Book Recommendation System",
